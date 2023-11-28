@@ -1,6 +1,7 @@
+import { createBrowserRouter, Outlet, RouteObject } from "react-router-dom";
+
 import { SidebarLayout } from "@/layout";
 import { Home, Presentation } from "@/pages";
-import { createBrowserRouter, Outlet, RouteObject } from "react-router-dom";
 
 const routes: RouteObject[] = [
     {

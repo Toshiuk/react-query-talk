@@ -1,7 +1,9 @@
-import PresentationMDX from "@/assets/presentation.mdx";
+import { FC } from "react";
+
 import { MDXComponents } from "mdx/types";
 import { components } from "presentify";
-import { FC } from "react";
+
+import PresentationMDX from "@/assets/presentation.mdx";
 
 const Presentation: FC = () => <PresentationMDX components={components as MDXComponents} />;
 
