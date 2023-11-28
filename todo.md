@@ -3,7 +3,6 @@
 ## Add libs:
 
 - [ ] Add material-ui
-- [ ] Add react-router
 - [ ] Add react-query
 - [ ] Add msw
 
