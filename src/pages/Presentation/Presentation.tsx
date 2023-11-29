@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import "./presentation.css";
 import { MDXComponents } from "mdx/types";
 import { components } from "presentify";
 

@@ -1,0 +1,14 @@
+.presentation {
+    font-size: 1.5rem;
+    background-color: var(--joy-palette-neutral-900);
+}
+
+.presentation .token-line.token-line.token-line {
+    font-size: 1.5rem;
+}
+
+.presentation .language-tsx.language-tsx.language-tsx {
+    width: auto;
+    background-color: var(--joy-palette-background-level1);
+    border-radius: var(--joy-radius-sm);
+}

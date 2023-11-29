@@ -11,7 +11,7 @@ export default defineConfig({
         mdx({
             jsxImportSource: "@emotion/react",
             providerImportSource: "@mdx-js/react",
-            remarkPlugins: [rehypeMdxCodeProps],
+            rehypePlugins: [rehypeMdxCodeProps],
         }),
         tsconfigPaths(),
     ],

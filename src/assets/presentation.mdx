@@ -1,14 +1,90 @@
-import { PresentifyProvider } from 'presentify';
+import GitHubIcon from "@mui/icons-material/GitHub";
+import QueryStatsIcon from "@mui/icons-material/QueryStats";
+import SyncIcon from "@mui/icons-material/Sync";
+import { PresentifyProvider } from "presentify";
+import ReactQueryImg from "./images/react-query.png";
 
-<PresentifyProvider>
-    # Hello
-    link to [google](https://google.com)
+<PresentifyProvider options={{ theme: localStorage.getItem("joy-mode"), className: "presentation" }}>
+    # Introduction to React Query
+    [<GitHubIcon style={{ fontSize: 32 }}/>](https://github.com/toshiuk)
 
     ---
 
-    ## This is my presentation
+    ## React: A Brief Overview
+
+    ```tsx showLineNumbers
+    const App = () => {
+        return <h1>Hello, React!</h1>;
+    }
+
+    export default App;
+    ```
 
     ---
 
-    ## The End
+    ## Data Fetching in React
+
+    ```tsx showLineNumbers highlightLines="5-16"
+
+    const fetchPosts = () => fetch("https://api.example.com/posts")
+                             .then(res => res.json());
+    const FetchData = () => {
+        const [data, setData] = useState(null);
+        const [isLoading, setIsLoading] = useState(true);
+
+        useEffect(() => {
+            fetchPosts().then(data => {
+                setData(data);
+                setIsLoading(false);
+            });
+        }, []);
+
+        return <div>{isLoading ? "Loading..." : <DisplayData data={data} />}</div>
+    }
+    export default FetchData;
+    ```
+
+    ---
+
+    # What is React Query?
+
+    <img src={ReactQueryImg} alt="React Query Logo" style={{ width: "50%" }} />
+
+    ---
+    <QueryStatsIcon style={{ fontSize: 64 }} />
+    ## React Query: Managing Server State
+
+
+    It provides tools to fetch, cache, and update data in an efficient and declarative way, simplifying the process of synchronizing your UI with your backend.
+
+    ```tsx showLineNumbers highlightLines="7-9"
+    import { useQuery } from "react-query";
+
+    const fetchPosts = () => fetch("https://api.example.com/posts")
+                             .then(res => res.json());
+
+    const FetchData = () => {
+        const { data,  isLoading } = useQuery("posts", fetchPosts);
+
+        return <div>{isLoading ? "Loading..." : <DisplayData data={data} />}</div>
+    }
+
+    export default FetchData;
+    ```
+
+    ---
+
+    <SyncIcon style={{ fontSize: 64 }} />
+
+    ## Key Features of React Query
+
+    React Query brings several key features to the table:
+
+    - **Automated Caching**: Reduces unnecessary network requests.
+    - **Background Data Syncing**: Keeps data fresh without manual refreshes.
+    - **Optimistic Updates**: Provides a seamless user experience.
+
+    ---
+    # End
+
 </PresentifyProvider>
