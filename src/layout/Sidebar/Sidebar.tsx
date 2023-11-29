@@ -48,7 +48,7 @@ const Sidebar: FC<PropsWithChildren> = ({ children }) => {
                     }}
                 >
                     {navItems.map(({ title, Icon, path }) => (
-                        <ListItem>
+                        <ListItem key={path}>
                             <ListItemButton component={Link} to={path}>
                                 <Icon />
                                 <ListItemContent>

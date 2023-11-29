@@ -3,7 +3,6 @@
 ## Add libs:
 
 - [ ] Add react-query
-- [ ] Add msw
 
 ## Presentation
 
