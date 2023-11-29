@@ -1,13 +1,11 @@
 # To do - Improving development/UX with react-query
 
-## Add libs:
-
-- [ ] Add react-query
-
 ## Presentation
 
 - [x] **Introduction**
     - Briefly introduce React and the concept of data fetching
+- [ ] **Global state**
+    - Define difference between client state and server state
 - [x] **What is React Query**
     - Define React Query and its role in managing server state
 - [x] **Why React Query**
@@ -39,4 +37,20 @@
     - [ ] Comparison with other libraries Apollo Client, SWR
 - [ ] **Conclusion**
     - Summarize potential impacts on development and user experience
+
+## Examples
+
+- [x] Request without react-query
+- [ ] Request with react-query
+- [ ] Request with invalidate query
+- [ ] Request with mutation
+- [ ] Request with suspense
+- [ ] Request with error without handling
+- [ ] Request with error boundary
+- [ ] Request with infinite scroll
+- [ ] Request with optimistic updates
+- [ ] Request with retry logic
+- [ ] Request with window focus refetching
+
+
 

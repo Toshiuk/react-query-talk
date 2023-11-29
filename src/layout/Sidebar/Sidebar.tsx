@@ -1,8 +1,9 @@
 import { FC, PropsWithChildren } from "react";
 
 import { Link } from "react-router-dom";
-import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { Box, Button, List, ListItem, ListItemButton, ListItemContent, Sheet, Typography } from "@mui/joy";
 
 import { ColorSchemeToggle } from "@/components";
@@ -20,15 +21,20 @@ const navItems: NavItem[] = [
         path: "/",
     },
     {
+        title: "Sad Dashboard",
+        Icon: SentimentVeryDissatisfiedIcon,
+        path: "/saddashboard",
+    },
+    {
         title: "Dashboard",
-        Icon: DashboardRoundedIcon,
+        Icon: SentimentSatisfiedAltIcon,
         path: "/dashboard",
     },
 ];
 
 const Sidebar: FC<PropsWithChildren> = ({ children }) => {
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box display="flex">
             <Sheet
                 sx={{
                     gap: 1,
@@ -67,6 +73,8 @@ const Sidebar: FC<PropsWithChildren> = ({ children }) => {
                 sx={{
                     width: "100%",
                     p: 6,
+                    display: "flex",
+                    flexDirection: "column",
                 }}
             >
                 {children}

@@ -9,4 +9,8 @@ export const handlers = [
         await delay(2);
         return HttpResponse.json({ isSubscribed: true });
     }),
+    http.get(`${MOCKED_BASE_URL}/content`, async () => {
+        await delay(2);
+        return HttpResponse.json({ content: "This came from the backend!" });
+    }),
 ];

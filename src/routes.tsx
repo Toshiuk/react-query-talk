@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet, RouteObject } from "react-router-dom";
 
 import { SidebarLayout } from "@/layout";
-import { Dashboard, Home, Presentation } from "@/pages";
+import { Dashboard, Home, Presentation, SadDashboard } from "@/pages";
 
 const routes: RouteObject[] = [
     {
@@ -19,6 +19,10 @@ const routes: RouteObject[] = [
             {
                 path: "/dashboard",
                 element: <Dashboard />,
+            },
+            {
+                path: "/saddashboard",
+                element: <SadDashboard />,
             },
         ],
     },
