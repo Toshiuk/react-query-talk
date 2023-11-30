@@ -1,5 +1,7 @@
 # To do - Improving development/UX with react-query
 
+- [ ] Add project md
+
 ## Presentation
 
 - [x] **Introduction**
@@ -13,16 +15,16 @@
 - [x] **Core Concepts of React Query**
     - [x] Queries and Mutations
     - [x] Caching and Background Sync
-    - [x] Query Invalidation and Refetching
-- [ ] **Examples on How to Improve Development with React Query**
-    - [ ] Caching strategies and benefits
-    - [ ] Handling errors with `onError`
-    - [ ] Optimistic updates with `onSuccess`
+- [x] **Examples on How to Improve Development with React Query**
+    - [x] Caching strategies and benefits
+    - [x] Handling errors with `onError`
+    - [x] Exaples with `onSuccess`
     - [x] Comparison with traditional data fetching methods (like fetch or Axios)
 - [ ] **Enhancing User Experience with React Query**
     - [ ] Implementing Suspense for data fetching
     - [ ] Refetching data when the application regains focus
     - [ ] Advanced error handling techniques (using error boundaries)
+    - [ ] Query Invalidation and Refetching
 - [ ] **Configuring React Query**
     - [ ] Setting cache time and its impact
     - [ ] Retry logic

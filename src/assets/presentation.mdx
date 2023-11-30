@@ -50,20 +50,20 @@ import ReactQueryImg from "./images/react-query.png";
     const fetchPosts = () => fetch("https://api.example.com/posts")
     .then(res => res.json());
 
-    const FetchData = () => {
-        const [data, setData] = useState(null);
+    const FetchPosts = () => {
+        const [posts, setPosts] = useState(null);
         const [isLoading, setIsLoading] = useState(true);
 
         useEffect(() => {
             fetchPosts().then(data => {
-                    setData(data);
+                    setPosts(data);
                     setIsLoading(false);
                 });
             }, []);
 
-        return <div>{isLoading ? "Loading..." : <DisplayData data={data} />}</div>
+        return <div>{isLoading ? "Loading..." : <DisplayPosts posts={posts} />}</div>
     }
-    export default FetchData;
+    export default FetchPosts;
     ```
 
     ---
@@ -85,13 +85,13 @@ import ReactQueryImg from "./images/react-query.png";
     const fetchPosts = () => fetch("https://api.example.com/posts")
     .then(res => res.json());
 
-    const FetchData = () => {
-        const { data, isLoading } = useQuery("posts", fetchPosts);
+    const FetchPosts = () => {
+        const { data: posts, isLoading } = useQuery("posts", fetchPosts);
 
-        return <div>{isLoading ? "Loading..." : <DisplayData data={data} />}</div>
+        return <div>{isLoading ? "Loading..." : <DisplayPosts posts={posts} />}</div>
     }
 
-    export default FetchData;
+    export default FetchPosts;
     ```
 
     ---
@@ -105,6 +105,50 @@ import ReactQueryImg from "./images/react-query.png";
     - **Automated Caching**: Reduces unnecessary network requests.
     - **Background Data Syncing**: Keeps data fresh without manual refreshes.
     - **Optimistic Updates**: Provides a seamless user experience.
+
+    ---
+
+    ## Examples - Caching
+
+    ```tsx showLineNumbers highlightLines="2"
+    const FetchPost = ({id}) => {
+        const { data: {post}, isLoading } = useQuery(["posts", id], () => fetchPost(id));
+
+        return <div>{isLoading ? "Loading..." : <DisplayPost post={post} />}</div>
+    }
+    ```
+
+    ---
+
+    ## Examples - Error
+
+    ```tsx showLineNumbers highlightLines="2-8"
+    const FetchPosts = () => {
+        const { data: posts, isLoading, isError } = useQuery("posts", fetchPosts, onError: (error) => {
+            showSnackbar(error.message);
+        })
+
+        if(isError){
+            return <div>Something went wrong!</div>
+        }
+
+        return <div>{isLoading ? "Loading..." : <DisplayPosts posts={posts} />}</div>
+    }
+    ```
+
+    ---
+
+    ## Examples - Success
+
+    ```tsx showLineNumbers highlightLines="2-6"
+    const FetchPosts = () => {
+        const { data: posts, isSuccess } = useQuery("posts", fetchPosts, onSuccess: () => {
+            showSnackbar("Posts loaded sucessufully!");
+        })
+
+        return <div>{isSuccess ? <DisplayPosts posts={posts} /> : "Maybe loading, maybe error..."  }</div>
+    }
+    ```
 
     ---
     # End
