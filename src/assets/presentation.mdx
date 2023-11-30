@@ -6,7 +6,7 @@ import ReactQueryImg from "./images/react-query.png";
 
 <PresentifyProvider options={{ theme: localStorage.getItem("joy-mode"), className: "presentation" }}>
     # Introduction to React Query
-    [<GitHubIcon style={{ fontSize: 32 }}/>](https://github.com/toshiuk)
+    [<GitHubIcon style={{ fontSize: 32 }} />](https://github.com/toshiuk)
 
     ---
 
@@ -22,22 +22,44 @@ import ReactQueryImg from "./images/react-query.png";
 
     ---
 
+    ## What is Global state?
+
+    <Mermaid>
+        {`
+            flowchart TD
+                A[Global State] --> B[Client state]
+                A --> C[Server state]
+                B --> D(Client owned)
+                B --> E(Non-persistent)
+                B --> F(Sync)
+                B --> G(Up-to-date!)
+                C --> H(Server owned)
+                C --> I(Persistent)
+                C --> J(Async)
+                C --> K(Out-of-date?)
+                `
+        }
+    </Mermaid>
+
+    ---
+
     ## Data Fetching in React
 
     ```tsx showLineNumbers highlightLines="5-16"
 
     const fetchPosts = () => fetch("https://api.example.com/posts")
-                             .then(res => res.json());
+    .then(res => res.json());
+
     const FetchData = () => {
         const [data, setData] = useState(null);
         const [isLoading, setIsLoading] = useState(true);
 
         useEffect(() => {
             fetchPosts().then(data => {
-                setData(data);
-                setIsLoading(false);
-            });
-        }, []);
+                    setData(data);
+                    setIsLoading(false);
+                });
+            }, []);
 
         return <div>{isLoading ? "Loading..." : <DisplayData data={data} />}</div>
     }
@@ -61,10 +83,10 @@ import ReactQueryImg from "./images/react-query.png";
     import { useQuery } from "react-query";
 
     const fetchPosts = () => fetch("https://api.example.com/posts")
-                             .then(res => res.json());
+    .then(res => res.json());
 
     const FetchData = () => {
-        const { data,  isLoading } = useQuery("posts", fetchPosts);
+        const { data, isLoading } = useQuery("posts", fetchPosts);
 
         return <div>{isLoading ? "Loading..." : <DisplayData data={data} />}</div>
     }

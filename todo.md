@@ -4,7 +4,7 @@
 
 - [x] **Introduction**
     - Briefly introduce React and the concept of data fetching
-- [ ] **Global state**
+- [x] **Global state**
     - Define difference between client state and server state
 - [x] **What is React Query**
     - Define React Query and its role in managing server state
