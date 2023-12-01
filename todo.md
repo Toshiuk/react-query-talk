@@ -18,22 +18,21 @@
 - [x] **Examples on How to Improve Development with React Query**
     - [x] Caching strategies and benefits
     - [x] Handling errors with `onError`
-    - [x] Exaples with `onSuccess`
+    - [x] Examples with `onSuccess`
     - [x] Comparison with traditional data fetching methods (like fetch or Axios)
-- [ ] **Enhancing User Experience with React Query**
-    - [ ] Implementing Suspense for data fetching
-    - [ ] Refetching data when the application regains focus
-    - [ ] Advanced error handling techniques (using error boundaries)
-    - [ ] Query Invalidation and Refetching
+    - [x] Show an overview for other parameters
+- [x] **Enhancing User Experience with React Query**
+    - [x] Refetching data when the application regains focus
+    - [x] Query Invalidation and Refetching
 - [ ] **Configuring React Query**
     - [ ] Setting cache time and its impact
     - [ ] Retry logic
 - [ ] **Advanced Features**
     - [ ] useMutation for creating, updating, and deleting data
     - [ ] Implementing infinite scroll with React Query
-- [ ] **Performance Optimization**
-    - [ ] Query prefetching
-    - [ ] Window Focus Refetching
+- [ ] **Enhancing User Experience
+    - [ ] Implementing Suspense for data fetching
+    - [ ] Advanced error handling techniques (using error boundaries)
 - [ ] **Final Observations and Best Practices**
     - [ ] Strategies for persisting the QueryClient state
     - [ ] Comparison with other libraries Apollo Client, SWR
@@ -43,7 +42,7 @@
 ## Examples
 
 - [x] Request without react-query
-- [ ] Request with react-query
+- [x] Request with react-query
 - [ ] Request with invalidate query
 - [ ] Request with mutation
 - [ ] Request with suspense
