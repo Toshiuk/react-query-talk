@@ -2,6 +2,7 @@ import { FC, PropsWithChildren } from "react";
 
 import { Link } from "react-router-dom";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import ListOutlineddIcon from "@mui/icons-material/ListOutlined";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { Box, Button, List, ListItem, ListItemButton, ListItemContent, Sheet, Typography } from "@mui/joy";
@@ -30,6 +31,11 @@ const navItems: NavItem[] = [
         Icon: SentimentSatisfiedAltIcon,
         path: "/dashboard",
     },
+    {
+        title: "Item list",
+        Icon: ListOutlineddIcon,
+        path: "/list",
+    },
 ];
 
 const Sidebar: FC<PropsWithChildren> = ({ children }) => {
@@ -39,7 +45,7 @@ const Sidebar: FC<PropsWithChildren> = ({ children }) => {
                 sx={{
                     gap: 1,
                     position: "sticky",
-                    minHeight: "100vh",
+                    height: "100vh",
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
@@ -75,6 +81,8 @@ const Sidebar: FC<PropsWithChildren> = ({ children }) => {
                     p: 6,
                     display: "flex",
                     flexDirection: "column",
+                    overflowY: "auto",
+                    height: "100vh",
                 }}
             >
                 {children}

@@ -43,8 +43,8 @@
 
 - [x] Request without react-query
 - [x] Request with react-query
-- [ ] Request with invalidate query
-- [ ] Request with mutation
+- [x] Request with invalidate query
+- [x] Request with mutation
 - [ ] Request with suspense
 - [ ] Request with error without handling
 - [ ] Request with error boundary

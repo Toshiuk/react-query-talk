@@ -7,7 +7,14 @@ import { CssVarsProvider } from "@mui/joy/styles";
 
 import { router } from "@/routes.tsx";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: false,
+            staleTime: 5 * 60 * 1000 /* 5 min */,
+        },
+    },
+});
 const Providers: FC = () => {
     return (
         <CssVarsProvider>
