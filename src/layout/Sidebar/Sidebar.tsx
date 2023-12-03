@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ListOutlineddIcon from "@mui/icons-material/ListOutlined";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
@@ -36,9 +36,16 @@ const navItems: NavItem[] = [
         Icon: ListOutlineddIcon,
         path: "/list",
     },
+    {
+        title: "Optimistic updates",
+        Icon: ListOutlineddIcon,
+        path: "/listOptimistic",
+    },
 ];
 
 const Sidebar: FC<PropsWithChildren> = ({ children }) => {
+    const location = useLocation();
+
     return (
         <Box display="flex">
             <Sheet
@@ -61,7 +68,7 @@ const Sidebar: FC<PropsWithChildren> = ({ children }) => {
                 >
                     {navItems.map(({ title, Icon, path }) => (
                         <ListItem key={path}>
-                            <ListItemButton component={Link} to={path}>
+                            <ListItemButton component={Link} to={path} selected={location.pathname === path}>
                                 <Icon />
                                 <ListItemContent>
                                     <Typography level="title-sm">{title}</Typography>

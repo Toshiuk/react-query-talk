@@ -49,7 +49,7 @@
 - [ ] Request with error without handling
 - [ ] Request with error boundary
 - [ ] Request with infinite scroll
-- [ ] Request with optimistic updates
+- [x] Request with optimistic updates
 - [ ] Request with retry logic
 - [ ] Request with window focus refetching
 

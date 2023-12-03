@@ -27,4 +27,8 @@ export const handlers = [
         sessionStorage.setItem("items", JSON.stringify([...items, itemContent]));
         return HttpResponse.json(items);
     }),
+    http.post(`${MOCKED_BASE_URL}/itemserror`, async () => {
+        await delay(2);
+        return new HttpResponse(null, { status: 500, statusText: "Internal Server Error" });
+    }),
 ];

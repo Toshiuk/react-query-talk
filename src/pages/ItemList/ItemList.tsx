@@ -11,15 +11,20 @@ const ItemList: FC = () => {
     const [itemContent, setItemContent] = useState("");
     const queryClient = useQueryClient();
 
-    const { data: items, isFetching: isFetchingItems } = useQuery("items", () =>
-        api.get<string[]>("/items").then(({ data }) => data),
-    );
+    const {
+        data: items,
+        isLoading: isLoadingItems,
+        isFetching: isFetchingItems,
+    } = useQuery("items", () => api.get<string[]>("/items").then(({ data }) => data));
 
-    const { mutate: addItem } = useMutation((content: string) => api.post("/items", { itemContent: content }), {
-        onSuccess: () => {
-            queryClient.invalidateQueries("items");
+    const { mutate: addItem, isLoading: isLoadingPostItem } = useMutation(
+        (content: string) => api.post("/items", { itemContent: content }),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries("items");
+            },
         },
-    });
+    );
 
     const onAddItem = () => {
         addItem(itemContent);
@@ -30,16 +35,16 @@ const ItemList: FC = () => {
         <>
             <Typography level="h1">Item list</Typography>
             <Box display="flex" flexDirection="column">
-                {isFetchingItems && <Loader />}
-                {!isFetchingItems && !items?.length && (
+                {isLoadingItems && <Loader />}
+                {!isLoadingItems && !items?.length && (
                     <Typography level="body-lg" color="neutral" my={2}>
                         No items yet :(
                     </Typography>
                 )}
-                {!isFetchingItems && !!items?.length && (
+                {!isLoadingItems && !!items?.length && (
                     <List marker="disc">
                         {items.map((item) => (
-                            <ListItem>{item}</ListItem>
+                            <ListItem key={item}>{item}</ListItem>
                         ))}
                     </List>
                 )}
@@ -49,7 +54,9 @@ const ItemList: FC = () => {
                         placeholder="Item name"
                         onChange={(e) => setItemContent(e.target.value)}
                     />
-                    <Button onClick={onAddItem}>Add item</Button>
+                    <Button onClick={onAddItem} disabled={isLoadingPostItem || isFetchingItems}>
+                        Add item
+                    </Button>
                 </Box>
             </Box>
         </>
