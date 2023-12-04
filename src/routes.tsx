@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet, RouteObject } from "react-router-dom";
 
 import { SidebarLayout } from "@/layout";
-import { Dashboard, Home, ItemList, ItemListOptimistic, Presentation, SadDashboard } from "@/pages";
+import { Dashboard, Home, ItemList, ItemListOptimistic, Presentation, RequestExamples, SadDashboard } from "@/pages";
 
 const routes: RouteObject[] = [
     {
@@ -31,6 +31,10 @@ const routes: RouteObject[] = [
             {
                 path: "/listOptimistic",
                 element: <ItemListOptimistic />,
+            },
+            {
+                path: "/requestExamples",
+                element: <RequestExamples />,
             },
         ],
     },

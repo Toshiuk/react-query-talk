@@ -19,7 +19,7 @@ const ItemListOptimistic: FC = () => {
     const { mutate: addItem } = useMutation(
         (content: string) => {
             queryClient.setQueryData("items", [...(items || []), content]);
-            return api.post("/itemserror", { itemContent: content });
+            return api.post("/items/error", { itemContent: content });
         },
         {
             onError: (_, content) => {

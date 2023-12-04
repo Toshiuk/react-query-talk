@@ -30,7 +30,7 @@
 - [x] **Advanced Features**
     - [x] useMutation for creating, updating, and deleting data
     - [ ] Implementing infinite scroll with React Query
-- [x] **Enhancing User Experience
+- [x] **Enhancing User Experience**
     - [x] Implementing Suspense for data fetching
     - [x] Advanced error handling techniques (using error boundaries)
 - [ ] **Final Observations and Best Practices**
@@ -45,13 +45,13 @@
 - [x] Request with react-query
 - [x] Request with invalidate query
 - [x] Request with mutation
-- [ ] Request with suspense
-- [ ] Request with error without handling
-- [ ] Request with error boundary
+- [x] Request with suspense
+- [x] Request with error without handling
+- [x Request with error boundary
 - [ ] Request with infinite scroll
 - [x] Request with optimistic updates
-- [ ] Request with retry logic
-- [ ] Request with window focus refetching
+- [x] Request with retry logic
+- [x] Request with window focus refetching
 
 
 

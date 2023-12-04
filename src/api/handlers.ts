@@ -13,7 +13,18 @@ export const handlers = [
     }),
     http.get(`${MOCKED_BASE_URL}/content`, async () => {
         await delay(2);
-        return HttpResponse.json({ content: "This came from the backend!" });
+        return HttpResponse.json({ content: "Success! This text came from the backend!" });
+    }),
+    http.get(`${MOCKED_BASE_URL}/content/error`, async () => {
+        await delay(2);
+        return new HttpResponse(null, { status: 500, statusText: "Internal Server Error" });
+    }),
+    http.get(`${MOCKED_BASE_URL}/content/random`, async () => {
+        await delay(2);
+        // random number between 0 and 4 (inclusive)
+        const random = Math.floor(Math.random() * 5);
+        if (random === 0) return HttpResponse.json({ content: "Success! This text came from the backend!" });
+        return new HttpResponse(null, { status: 500, statusText: "Internal Server Error" });
     }),
     http.get(`${MOCKED_BASE_URL}/items`, async () => {
         await delay(2);
@@ -27,7 +38,7 @@ export const handlers = [
         sessionStorage.setItem("items", JSON.stringify([...items, itemContent]));
         return HttpResponse.json(items);
     }),
-    http.post(`${MOCKED_BASE_URL}/itemserror`, async () => {
+    http.post(`${MOCKED_BASE_URL}/items/error`, async () => {
         await delay(2);
         return new HttpResponse(null, { status: 500, statusText: "Internal Server Error" });
     }),

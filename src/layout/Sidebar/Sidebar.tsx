@@ -2,9 +2,10 @@ import { FC, PropsWithChildren } from "react";
 
 import { Link, useLocation } from "react-router-dom";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import ListOutlineddIcon from "@mui/icons-material/ListOutlined";
+import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import { Box, Button, List, ListItem, ListItemButton, ListItemContent, Sheet, Typography } from "@mui/joy";
 
 import { ColorSchemeToggle } from "@/components";
@@ -33,13 +34,18 @@ const navItems: NavItem[] = [
     },
     {
         title: "Item list",
-        Icon: ListOutlineddIcon,
+        Icon: ListOutlinedIcon,
         path: "/list",
     },
     {
         title: "Optimistic updates",
-        Icon: ListOutlineddIcon,
+        Icon: ListOutlinedIcon,
         path: "/listOptimistic",
+    },
+    {
+        title: "Request examples",
+        Icon: SyncAltIcon,
+        path: "/requestExamples",
     },
 ];
 
