@@ -24,20 +24,20 @@
 - [x] **Enhancing User Experience with React Query**
     - [x] Refetching data when the application regains focus
     - [x] Query Invalidation and Refetching
-- [ ] **Configuring React Query**
-    - [ ] Setting cache time and its impact
-    - [ ] Retry logic
-- [ ] **Advanced Features**
-    - [ ] useMutation for creating, updating, and deleting data
+- [x] **Configuring React Query**
+    - [x] Setting cache time and its impact
+    - [x] Retry logic
+- [x] **Advanced Features**
+    - [x] useMutation for creating, updating, and deleting data
     - [ ] Implementing infinite scroll with React Query
-- [ ] **Enhancing User Experience
-    - [ ] Implementing Suspense for data fetching
-    - [ ] Advanced error handling techniques (using error boundaries)
+- [x] **Enhancing User Experience
+    - [x] Implementing Suspense for data fetching
+    - [x] Advanced error handling techniques (using error boundaries)
 - [ ] **Final Observations and Best Practices**
     - [ ] Strategies for persisting the QueryClient state
     - [ ] Comparison with other libraries Apollo Client, SWR
 - [ ] **Conclusion**
-    - Summarize potential impacts on development and user experience
+    - [ ] Summarize potential impacts on development and user experience
 
 ## Examples
 

@@ -216,7 +216,87 @@ import ReactQueryImg from "./images/react-query.png";
         }
         ```
 
-        ---
+    ---
+
+    ## Get started
+
+    ```tsx showLineNumbers
+
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            mutations: {
+                retry: 2,
+            },
+            queries: {
+                retry: false,
+                staleTime: 5 * 60 * 1000,
+                useErrorBoundary: true,
+                suspense: true,
+            },
+        },
+    })
+
+    const App = () => {
+        return (
+            <QueryClientProvider client={queryClient}>
+                // ...
+            </QueryClientProvider>
+        )
+    }
+
+    ```
+
+    ---
+
+    ## Suspense
+
+    ```tsx showLineNumbers
+
+    const Documents = () => {
+        const { data: documents } = useQuery(
+        "documents",
+        fetchDocuments,
+        { suspense: true });
+
+        return // show documents
+    }
+    ```
+
+    ```tsx showLineNumbers
+    const DocumentsPage = () => {
+        return <div>
+                    <h1>Documents page</h1>
+                    <Suspense fallback={<Loading />}><Documents /></Suspense>
+                </div>
+    }
+    ```
+
+    ---
+
+    ## Error boundary
+
+    ```tsx showLineNumbers
+
+    const Documents = () => {
+        const { data: documents } = useQuery(
+        "documents",
+        fetchDocuments,
+        { useErrorBoundary: true });
+
+        return // show documents
+    }
+    ```
+
+    ```tsx showLineNumbers
+    const DocumentsPage = () => {
+        return <div>
+                    <h1>Documents page</h1>
+                    <ErrorBoundary fallback={<p>Something went wrong</p>}><Documents /></ErrorBoundary>
+                </div>
+    }
+    ```
+    ---
+
     # End
 
 </PresentifyProvider>
