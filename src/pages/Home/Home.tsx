@@ -1,24 +1,22 @@
 import { FC, useEffect, useState } from "react";
 
+import Markdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import { Typography } from "@mui/joy";
 
-import api from "@/api";
-
 const Home: FC = () => {
-    const [isSubscribed, setIsSubscribed] = useState(false);
-    const getIsSubscribed = async () => {
-        const { data } = await api.get("/subscribed");
-        setIsSubscribed(data);
-    };
+    const [markdown, setMarkdown] = useState("");
 
     useEffect(() => {
-        getIsSubscribed();
+        fetch(import.meta.env.DEV ? "@/../README.md" : "/react-query-talk/README.md")
+            .then((res) => res.text())
+            .then((text) => setMarkdown(text));
     }, []);
 
     return (
         <>
             <Typography level="h1">Home</Typography>
-            <Typography>{isSubscribed ? "Yaaay, now you are!" : "No, you are not subscribed :("}</Typography>
+            <Markdown rehypePlugins={[rehypeRaw]}>{markdown}</Markdown>
         </>
     );
 };

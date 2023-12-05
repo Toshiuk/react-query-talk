@@ -7,10 +7,6 @@ import delay from "../utils/delay.ts";
 const getItems = () => JSON.parse(sessionStorage.getItem("items") || "[]");
 
 export const handlers = [
-    http.get(`${MOCKED_BASE_URL}/subscribed`, async () => {
-        await delay(2);
-        return HttpResponse.json({ isSubscribed: true });
-    }),
     http.get(`${MOCKED_BASE_URL}/content`, async () => {
         await delay(2);
         return HttpResponse.json({ content: "Success! This text came from the backend!" });
