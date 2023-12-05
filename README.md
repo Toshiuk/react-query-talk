@@ -1,30 +1,68 @@
-# React + TypeScript + Vite
+# React Query Talk
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains a presentation on the use of React Query to enhance user experience, particularly in data
+fetching scenarios with React. The talk was created for internal purposes at my company.
 
-Currently, two official plugins are available:
+🔗 [Live Preview](https://toshiuk.github.io/react-query-talk)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎙️ Presentation Outline
 
-## Expanding the ESLint configuration
+- [x] **Introduction**
+    - Introduction to React and data fetching concepts
+- [x] **Global State**
+    - Client state vs server state
+- [x] **What is React Query**
+    - Role in managing server state
+- [x] **Why React Query**
+    - Challenges in traditional data fetching
+- [x] **Core Concepts**
+    - Queries, Mutations, Caching, Background Sync
+- [x] **Examples to Improve Development**
+    - Caching strategies, error handling, comparison with traditional methods
+- [x] **Enhancing User Experience**
+    - Refetching, Query Invalidation, Suspense, error boundaries
+- [x] **Configuring React Query**
+    - Cache time, retry logic
+- [x] **Advanced Features**
+    - `useMutation`, implementing infinite scroll
+- [ ] **Final Observations and Best Practices**
+    - Persisting QueryClient state, comparison with other libraries
+- [ ] **Conclusion**
+    - Impact on development and user experience
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🧑‍💻 Examples
 
-- Configure the top-level `parserOptions` property like this:
+- [x] Request without react-query
+- [x] Request with react-query
+- [x] Request with invalidate query
+- [x] Request with mutation
+- [x] Request with suspense
+- [x] Request with error without handling
+- [x] Request with error boundary
+- [ ] Request with infinite scroll
+- [x] Request with optimistic updates
+- [x] Request with retry logic
+- [x] Request with window focus refetching
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## 🛠️ Built With
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+<p align="left">
+    <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
+        <img src="https://main.vitejs.dev/logo.svg" alt="vite logo" width="40" height="40"/>
+    </a>
+    <a href="https://mswjs.io/" target="_blank" rel="noreferrer">
+        <img src="https://mswjs.io/_astro/msw.0b63bcd8.svg" alt="MSW logo" width="40" height="40"/>
+    </a>
+    <a href="https://reactjs.org/" target="_blank" rel="noreferrer">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCRKguaNZrVn6-NK9Ir6VdZf7PoRwLStgLLgsoSMq9ZA&s" alt="React logo" width="40" height="40"/>
+    </a>
+    <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">
+        <img src="https://cdn.worldvectorlogo.com/logos/typescript-2.svg" alt="Typescript logo" width="40" height="40"/>
+    </a>
+    <a href="https://mui.com/joy-ui/getting-started/" target="_blank" rel="noreferrer">
+        <img src="https://mui.com/static/logo.png" alt="Joy UI logo" width="40" height="40"/>
+    </a>
+    <a href="https://ernestteluk.github.io/presentify" target="_blank" rel="noreferrer">
+        <img src="https://ernestteluk.github.io/presentify/img/logo.svg" alt="Presentify logo" width="40" height="40"/>
+    </a>
+</p>
