@@ -183,7 +183,7 @@ import ReactQueryImg from "./images/react-query.png";
                                     { suspense: true, refetchOnWindowFocus: "always" });
 
         return <ul>{documents.map(document =>
-                    <li>
+                    <li key={document.name}>
                         {document.name}
                         <a href={`example.com/signdocument/${document.id}`} target="_blank">sign here</a>
                     </li>

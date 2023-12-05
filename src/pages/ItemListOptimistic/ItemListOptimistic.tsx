@@ -41,6 +41,7 @@ const ItemListOptimistic: FC = () => {
             <Snackbar
                 autoHideDuration={2000}
                 open={snackbarError}
+                color="danger"
                 onClose={() => {
                     setSnackbarError(false);
                 }}
