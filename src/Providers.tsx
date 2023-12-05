@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
 import { RouterProvider } from "react-router-dom";
 import { CssBaseline } from "@mui/joy";
 import { CssVarsProvider } from "@mui/joy/styles";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { router } from "@/routes.tsx";
 
@@ -22,7 +22,7 @@ const Providers: FC = () => {
             <QueryClientProvider client={queryClient}>
                 <CssBaseline />
                 <RouterProvider router={router} />
-                <ReactQueryDevtools position="top-right" />
+                <ReactQueryDevtools buttonPosition="top-right" />
             </QueryClientProvider>
         </CssVarsProvider>
     );

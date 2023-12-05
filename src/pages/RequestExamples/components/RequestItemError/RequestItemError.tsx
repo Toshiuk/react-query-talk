@@ -1,14 +1,17 @@
 import { FC } from "react";
 
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import api from "@/api";
 
 import RequestItemBase from "../RequestItemBase/RequestItemBase.tsx";
 
-const queryKey = "requestError";
+const queryKey = ["requestError"];
 const RequestItemError: FC = () => {
-    const { data, isLoading } = useQuery(queryKey, () => api.get("/content/error").then(({ data }) => data), {});
+    const { data, isLoading } = useQuery({
+        queryKey,
+        queryFn: () => api.get("/content/error").then(({ data }) => data),
+    });
 
     return (
         <RequestItemBase

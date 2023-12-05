@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
-import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Box, Button, Input, List, ListItem, Typography } from "@mui/joy";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import api from "@/api";
 
@@ -15,16 +15,17 @@ const ItemList: FC = () => {
         data: items,
         isLoading: isLoadingItems,
         isFetching: isFetchingItems,
-    } = useQuery("items", () => api.get<string[]>("/items").then(({ data }) => data));
+    } = useQuery({
+        queryKey: ["items"],
+        queryFn: () => api.get<string[]>("/items").then(({ data }) => data),
+    });
 
-    const { mutate: addItem, isLoading: isLoadingPostItem } = useMutation(
-        (content: string) => api.post("/items", { itemContent: content }),
-        {
-            onSuccess: () => {
-                queryClient.invalidateQueries("items");
-            },
+    const { mutate: addItem, isPending: isLoadingPostItem } = useMutation({
+        mutationFn: (content: string) => api.post("/items", { itemContent: content }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["items"] });
         },
-    );
+    });
 
     const onAddItem = () => {
         addItem(itemContent);

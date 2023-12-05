@@ -1,16 +1,18 @@
 import { FC } from "react";
 
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import api from "@/api";
 
 import RequestItemBase from "../RequestItemBase/RequestItemBase.tsx";
 
-const queryKey = "requestRetry";
+const queryKey = ["requestRetry"];
 const RequestItemRetry: FC = () => {
-    const { data, failureCount } = useQuery(queryKey, () => api.get("/content/random").then(({ data }) => data), {
+    const { data, failureCount } = useQuery({
+        queryKey,
+        queryFn: () => api.get("/content/random").then(({ data }) => data),
         retry: 3,
-        useErrorBoundary: true,
+        throwOnError: true,
     });
 
     return (

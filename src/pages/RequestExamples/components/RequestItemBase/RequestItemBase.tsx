@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { useQueryClient } from "react-query";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Button, Tooltip, Typography } from "@mui/joy";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { Loader } from "@/components";
 
@@ -10,14 +10,14 @@ type RequestItemBaseProps = {
     title: string;
     content?: string;
     isLoading?: boolean;
-    queryKey: string;
+    queryKey: ReadonlyArray<unknown>;
     tooltip?: string;
 };
 
 const RequestItemBase: FC<RequestItemBaseProps> = ({ title, content, isLoading = false, queryKey, tooltip }) => {
     const queryClient = useQueryClient();
     const handleClick = () => {
-        queryClient.resetQueries(queryKey);
+        queryClient.resetQueries({ queryKey });
     };
 
     return (

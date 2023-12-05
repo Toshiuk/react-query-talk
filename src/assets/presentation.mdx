@@ -80,13 +80,13 @@ import ReactQueryImg from "./images/react-query.png";
     It provides tools to fetch, cache, and update data in an efficient and declarative way, simplifying the process of synchronizing your UI with your backend.
 
     ```tsx showLineNumbers highlightLines="7-9"
-    import { useQuery } from "react-query";
+    import { useQuery } from "@tanstack/react-query";
 
     const fetchPosts = () => fetch("https://api.example.com/posts")
     .then(res => res.json());
 
     const FetchPosts = () => {
-        const { data: posts, isLoading } = useQuery("posts", fetchPosts);
+        const { data: posts, isLoading } = useQuery({queryKey: ["posts"], queryFn: fetchPosts});
 
         return <div>{isLoading ? "Loading..." : <DisplayPosts posts={posts} />}</div>
     }
@@ -112,7 +112,7 @@ import ReactQueryImg from "./images/react-query.png";
 
     ```tsx showLineNumbers highlightLines="2"
     const FetchPost = ({id}) => {
-        const { data: {post}, isLoading } = useQuery(["posts", id], () => fetchPost(id));
+        const { data: {post}, isLoading } = useQuery({queryKey: ["posts", id], queryFn: () => fetchPost(id)});
 
         return <div>{isLoading ? "Loading..." : <DisplayPost post={post} />}</div>
     }
@@ -124,7 +124,7 @@ import ReactQueryImg from "./images/react-query.png";
 
     ```tsx showLineNumbers highlightLines="2-8"
     const FetchPosts = () => {
-        const { data: posts, isLoading, isError } = useQuery("posts", fetchPosts)
+        const { data: posts, isLoading, isError } = useQuery({queryKey: ["posts"], queryFn: fetchPosts})
 
         if(isError){
             return <div>Something went wrong!</div>
@@ -140,7 +140,7 @@ import ReactQueryImg from "./images/react-query.png";
 
     ```tsx showLineNumbers highlightLines="2-6"
     const FetchPosts = () => {
-        const { data: posts, isSuccess } = useQuery("posts", fetchPosts)
+        const { data: posts, isSuccess } = useQuery({queryKey: ["posts"], queryFn: fetchPosts})
 
         return <div>{isSuccess ? <DisplayPosts posts={posts} /> : "Maybe loading, maybe error..."  }</div>
     }
@@ -177,10 +177,11 @@ import ReactQueryImg from "./images/react-query.png";
 
     ```tsx showLineNumbers
     const Documents = () => {
-        const { data: documents } = useQuery(
-                                    "documents",
-                                    fetchDocuments,
-                                    { suspense: true, refetchOnWindowFocus: "always" });
+        const { data: documents } = useQuery({
+                                queryKey: ["documents"]
+                                queryFn: fetchDocuments,
+                                refetchOnWindowFocus: "always",
+                                suspense: true});
 
         return <ul>{documents.map(document =>
                     <li key={document.name}>
@@ -196,13 +197,14 @@ import ReactQueryImg from "./images/react-query.png";
         ## UX Examples - Invalidate queries
 
         ```tsx showLineNumbers
-        import { queryCache } from "react-query";
+        import { queryCache } from "@tanstack/react-query";
 
         const AddPost = () => {
             const [postContent, setPostContent] = useState("");
-            const { addPost } = useMutation(addPostApi, {
+            const { addPost } = useMutation({
+                mutationFn: addPostApi,
                 onSuccess: () => {
-                    queryCache.invalidateQueries("posts");
+                    queryCache.invalidateQueries({queryKey: ["posts"]});
                 }
             });
             const handleSubmit = (e) => {
@@ -221,7 +223,6 @@ import ReactQueryImg from "./images/react-query.png";
     ## Get started
 
     ```tsx showLineNumbers
-
     const queryClient = new QueryClient({
         defaultOptions: {
             mutations: {
@@ -231,8 +232,7 @@ import ReactQueryImg from "./images/react-query.png";
                 retry: false,
                 staleTime: 5 * 60 * 1000, // 5 minutes
                 gcTime: 60 * 60 * 1000, // 10 hour
-                useErrorBoundary: true,
-                suspense: true,
+                throwOnError: true,
             },
         },
     })
@@ -251,10 +251,9 @@ import ReactQueryImg from "./images/react-query.png";
     ```tsx showLineNumbers
 
     const Documents = () => {
-        const { data: documents } = useQuery(
-        "documents",
-        fetchDocuments,
-        { suspense: true });
+        const { data: documents } = useSuspenseQuery({
+            queryKey: ["documents"]
+            queryFn: fetchDocuments });
 
         return // show documents
     }
@@ -276,10 +275,10 @@ import ReactQueryImg from "./images/react-query.png";
     ```tsx showLineNumbers
 
     const Documents = () => {
-        const { data: documents } = useQuery(
-        "documents",
-        fetchDocuments,
-        { useErrorBoundary: true });
+        const { data: documents } = useQuery({
+            queryKey: ["documents"]
+            queryFn: fetchDocuments,
+            useErrorBoundary: true});
 
         return // show documents
     }

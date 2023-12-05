@@ -1,8 +1,8 @@
 import { FC, PropsWithChildren, Suspense } from "react";
 
 import { ErrorBoundary } from "react-error-boundary";
-import { QueryErrorResetBoundary } from "react-query";
 import { Grid, Sheet } from "@mui/joy";
+import { QueryErrorResetBoundary } from "@tanstack/react-query";
 
 import { ErrorFallback, Loader } from "@/components";
 

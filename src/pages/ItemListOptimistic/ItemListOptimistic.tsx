@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
-import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Box, Button, Input, List, ListItem, Snackbar, Typography } from "@mui/joy";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import api from "@/api";
 
@@ -12,24 +12,23 @@ const ItemListOptimistic: FC = () => {
     const [itemContent, setItemContent] = useState("");
     const queryClient = useQueryClient();
 
-    const { data: items, isFetching: isFetchingItems } = useQuery("items", () =>
-        api.get<string[]>("/items").then(({ data }) => data),
-    );
+    const { data: items, isFetching: isFetchingItems } = useQuery({
+        queryKey: ["items"],
+        queryFn: () => api.get<string[]>("/items").then(({ data }) => data),
+    });
 
-    const { mutate: addItem } = useMutation(
-        (content: string) => {
-            queryClient.setQueryData("items", [...(items || []), content]);
+    const { mutate: addItem } = useMutation({
+        mutationFn: (content: string) => {
+            queryClient.setQueryData(["items"], [...(items || []), content]);
             return api.post("/items/error", { itemContent: content });
         },
-        {
-            onError: (_, content) => {
-                setSnackbarError(true);
-                const newItems = queryClient.getQueryData("items") as string[];
-                newItems?.splice(newItems.lastIndexOf(content), 1);
-                queryClient.setQueryData("items", newItems);
-            },
+        onError: (_, content) => {
+            setSnackbarError(true);
+            const newItems = queryClient.getQueryData(["items"]) as string[];
+            newItems?.splice(newItems.lastIndexOf(content), 1);
+            queryClient.setQueryData(["items"], newItems);
         },
-    );
+    });
 
     const onAddItem = () => {
         addItem(itemContent);

@@ -1,14 +1,17 @@
 import { FC } from "react";
 
-import { useQuery } from "react-query";
 import { Box, Typography } from "@mui/joy";
+import { useQuery } from "@tanstack/react-query";
 
 import api from "@/api";
 
 import Loader from "../../components/Loader/Loader.tsx";
 
 const Dashboard: FC = () => {
-    const { data, isLoading } = useQuery("content", () => api.get("/content").then(({ data }) => data));
+    const { data, isLoading } = useQuery({
+        queryKey: ["content"],
+        queryFn: () => api.get("/content").then(({ data }) => data),
+    });
 
     return (
         <>
