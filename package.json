@@ -16,6 +16,7 @@
         "@mui/icons-material": "^5.14.18",
         "@mui/joy": "^5.0.0-beta.15",
         "@mui/material": "^5.14.18",
+        "@tanstack/react-query-devtools": "^5.12.2",
         "axios": "^1.6.2",
         "msw": "^2.0.9",
         "presentify": "^1.1.0",

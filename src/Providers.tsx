@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { RouterProvider } from "react-router-dom";
 import { CssBaseline } from "@mui/joy";
 import { CssVarsProvider } from "@mui/joy/styles";
@@ -21,6 +22,7 @@ const Providers: FC = () => {
             <QueryClientProvider client={queryClient}>
                 <CssBaseline />
                 <RouterProvider router={router} />
+                <ReactQueryDevtools position="top-right" />
             </QueryClientProvider>
         </CssVarsProvider>
     );
