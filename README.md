@@ -25,7 +25,7 @@ fetching scenarios with React. The talk was created for internal purposes at my 
     - Cache time, retry logic
 - [x] **Advanced Features**
     - `useMutation`, implementing infinite scroll
-- [ ] **Final Observations and Best Practices**
+- [x] **Final Observations**
     - Persisting QueryClient state, comparison with other libraries
 - [ ] **Conclusion**
     - Impact on development and user experience

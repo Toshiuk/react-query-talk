@@ -229,21 +229,19 @@ import ReactQueryImg from "./images/react-query.png";
             },
             queries: {
                 retry: false,
-                staleTime: 5 * 60 * 1000,
+                staleTime: 5 * 60 * 1000, // 5 minutes
+                gcTime: 60 * 60 * 1000, // 10 hour
                 useErrorBoundary: true,
                 suspense: true,
             },
         },
     })
 
-    const App = () => {
-        return (
-            <QueryClientProvider client={queryClient}>
-                // ...
-            </QueryClientProvider>
-        )
-    }
-
+    ReactDOM.createRoot(rootElement).render(
+        <QueryClientProvider client={queryClient}>
+            // ...
+        </PersistQueryClientProvider>
+    );
     ```
 
     ---
@@ -295,6 +293,44 @@ import ReactQueryImg from "./images/react-query.png";
                 </div>
     }
     ```
+    ---
+
+    ## Persist query client
+
+    ```tsx showLineNumbers
+
+    import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+    import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+
+    const queryClient = new QueryClient();
+
+    const persister = createSyncStoragePersister({
+        storage: window.localStorage,
+    });
+
+    ReactDOM.createRoot(rootElement).render(
+        <PersistQueryClientProvider
+            client={queryClient}
+            persistOptions={{ persister }}
+        >
+           // ...
+        </PersistQueryClientProvider>
+    );
+    ```
+    ---
+
+    ## React Query vs SWR vs Apollo Client
+
+    | Feature                | React Query                           | SWR                                  | Apollo Client                       |
+    |------------------------|---------------------------------------|--------------------------------------|-------------------------------------|
+    | Data Fetching          | Uses fetch-based approach             | Uses fetch-based approach             | Primarily GraphQL focused           |
+    | Caching                | Advanced caching and synchronization  | Built-in caching with revalidation   | Sophisticated caching with GraphQL  |
+    | Server State Management| Optimized for server state            | Optimized for read-heavy operations  | Designed for GraphQL data management|
+    | Mutation Support       | Extensive support for mutations       | Basic mutation support               | Advanced mutations with GraphQL     |
+    | Pagination and Load More| Built-in support for complex patterns| Simple API for pagination            | Advanced pagination with GraphQL    |
+    | Subscription Support   | Not natively supported                | Not natively supported               | Native support for GraphQL subscriptions |
+    | DevTools               | Dedicated React Query Devtools        | No specific SWR DevTools             | Apollo Client DevTools             |
+
     ---
 
     # End

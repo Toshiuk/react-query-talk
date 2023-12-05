@@ -1,5 +1,6 @@
 // https://vitejs.dev/config/
 import rehypeMdxCodeProps from "rehype-mdx-code-props";
+import remarkGfm from "remark-gfm";
 import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -21,6 +22,7 @@ export default defineConfig({
             jsxImportSource: "@emotion/react",
             providerImportSource: "@mdx-js/react",
             rehypePlugins: [rehypeMdxCodeProps],
+            remarkPlugins: [remarkGfm],
         }),
         tsconfigPaths(),
     ],
