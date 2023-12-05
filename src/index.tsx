@@ -8,8 +8,11 @@ async function enableMocking() {
     const { worker } = await import("@/api/browser");
 
     return worker.start({
+        serviceWorker: {
+            url: "./mockServiceWorker.js",
+        },
         onUnhandledRequest(req, print) {
-            if (req.url.endsWith(".svg")) return;
+            if (/\.(svg|js|png)/.test(req.url)) return;
 
             print.warning();
         },

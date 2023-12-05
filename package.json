@@ -1,50 +1,54 @@
 {
-  "name": "react-query-talk",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@mui/icons-material": "^5.14.18",
-    "@mui/joy": "^5.0.0-beta.15",
-    "@mui/material": "^5.14.18",
-    "axios": "^1.6.2",
-    "msw": "^2.0.9",
-    "presentify": "^1.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-error-boundary": "^4.0.11",
-    "react-query": "^3.39.3",
-    "react-router-dom": "^6.20.0"
-  },
-  "devDependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mdx-js/rollup": "^3.0.0",
-    "@types/react": "^18.2.38",
-    "@types/react-dom": "^18.2.17",
-    "@typescript-eslint/eslint-plugin": "^6.13.0",
-    "@typescript-eslint/parser": "^6.13.0",
-    "@vitejs/plugin-react": "^4.2.0",
-    "@vitejs/plugin-react-swc": "^3.5.0",
-    "eslint": "^8.54.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.4",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "prettier": "^3.1.0",
-    "rehype-mdx-code-props": "^2.0.0",
-    "typescript": "^5.3.2",
-    "vite": "^5.0.2",
-    "vite-tsconfig-paths": "^4.2.1"
-  },
-  "packageManager": "yarn@4.0.2",
-  "msw": {
-    "workerDirectory": "public"
-  }
+    "name": "react-query-talk",
+    "version": "0.0.0",
+    "homepage": "https://toshiuk.github.io/react-query-talk",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "predeploy": "yarn run build",
+        "deploy": "gh-pages -d dist",
+        "dev": "vite",
+        "build": "tsc && vite build --base=/react-query-talk/",
+        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@mui/icons-material": "^5.14.18",
+        "@mui/joy": "^5.0.0-beta.15",
+        "@mui/material": "^5.14.18",
+        "axios": "^1.6.2",
+        "msw": "^2.0.9",
+        "presentify": "^1.1.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-error-boundary": "^4.0.11",
+        "react-query": "^3.39.3",
+        "react-router-dom": "^6.20.0"
+    },
+    "devDependencies": {
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@mdx-js/rollup": "^3.0.0",
+        "@types/react": "^18.2.38",
+        "@types/react-dom": "^18.2.17",
+        "@typescript-eslint/eslint-plugin": "^6.13.0",
+        "@typescript-eslint/parser": "^6.13.0",
+        "@vitejs/plugin-react": "^4.2.0",
+        "@vitejs/plugin-react-swc": "^3.5.0",
+        "eslint": "^8.54.0",
+        "eslint-plugin-react": "^7.33.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.4",
+        "eslint-plugin-simple-import-sort": "^10.0.0",
+        "gh-pages": "^6.1.0",
+        "prettier": "^3.1.0",
+        "rehype-mdx-code-props": "^2.0.0",
+        "typescript": "^5.3.2",
+        "vite": "^5.0.2",
+        "vite-tsconfig-paths": "^4.2.1"
+    },
+    "packageManager": "yarn@4.0.2",
+    "msw": {
+        "workerDirectory": "public"
+    }
 }
