@@ -40,6 +40,7 @@ fetching scenarios with React. The talk was created for internal purposes at my 
 - [x] Request with error without handling
 - [x] Request with error boundary
 - [x] Request with infinite scroll
+- [x] Request with pagination
 - [x] Request with optimistic updates
 - [x] Request with retry logic
 - [x] Request with window focus refetching
