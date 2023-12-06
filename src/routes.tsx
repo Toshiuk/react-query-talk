@@ -7,6 +7,7 @@ import {
     InfiniteQuery,
     ItemList,
     ItemListOptimistic,
+    Pagination,
     Presentation,
     RequestExamples,
     SadDashboard,
@@ -45,6 +46,10 @@ const routes: RouteObject[] = [
             {
                 path: "/listOptimistic",
                 element: <ItemListOptimistic />,
+            },
+            {
+                path: "/pagination",
+                element: <Pagination />,
             },
             {
                 path: "/infiniteQuery",

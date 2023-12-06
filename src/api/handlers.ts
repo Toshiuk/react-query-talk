@@ -29,7 +29,7 @@ export const handlers = [
         if (random === 0) return HttpResponse.json({ content: "Success! This text came from the backend!" });
         return new HttpResponse(null, { status: 500, statusText: "Internal Server Error" });
     }),
-    http.get(`${MOCKED_BASE_URL}/items/infinite`, async ({ request }) => {
+    http.get(`${MOCKED_BASE_URL}/items/paginated`, async ({ request }) => {
         const pageSize = 10;
         const url = new URL(request.url);
         const pageNumber = Number(url.searchParams.get("pageNumber") || 0);

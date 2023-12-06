@@ -2,6 +2,7 @@ import { FC, PropsWithChildren } from "react";
 
 import { Link, useLocation } from "react-router-dom";
 import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import RuleIcon from "@mui/icons-material/Rule";
@@ -48,6 +49,11 @@ const navItems: NavItem[] = [
         title: "Optimistic updates",
         Icon: ListOutlinedIcon,
         path: "/listOptimistic",
+    },
+    {
+        title: "Pagination",
+        Icon: AutoStoriesIcon,
+        path: "/pagination",
     },
     {
         title: "Infinite Query",

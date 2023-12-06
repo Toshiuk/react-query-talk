@@ -7,3 +7,4 @@ export { default as ItemListOptimistic } from "./ItemListOptimistic/ItemListOpti
 export { default as InfiniteQuery } from "./InfiniteQuery/InfiniteQuery.tsx";
 export { default as RequestExamples } from "./RequestExamples/RequestExamples.tsx";
 export { default as Status } from "./Status/Status.tsx";
+export { default as Pagination } from "./Pagination/Pagination.tsx";

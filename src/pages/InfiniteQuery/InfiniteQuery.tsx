@@ -15,15 +15,14 @@ const InfiniteQuery: FC = () => {
         isFetching: isFetchingItems,
     } = useInfiniteQuery({
         queryKey: ["itemsInfinite"],
-        queryFn: ({ pageParam: pageNumber }) => {
-            return api
-                .get("/items/infinite", {
+        queryFn: ({ pageParam: pageNumber }) =>
+            api
+                .get("/items/paginated", {
                     params: {
                         pageNumber,
                     },
                 })
-                .then(({ data }) => data);
-        },
+                .then(({ data }) => data),
         getNextPageParam: (lastPage) => lastPage.pageNumber + 1,
         initialPageParam: 0,
     });
