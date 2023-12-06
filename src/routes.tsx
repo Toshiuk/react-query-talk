@@ -10,6 +10,7 @@ import {
     Presentation,
     RequestExamples,
     SadDashboard,
+    Status,
 } from "@/pages";
 
 const routes: RouteObject[] = [
@@ -48,6 +49,10 @@ const routes: RouteObject[] = [
             {
                 path: "/infiniteQuery",
                 element: <InfiniteQuery />,
+            },
+            {
+                path: "/status",
+                element: <Status />,
             },
         ],
     },

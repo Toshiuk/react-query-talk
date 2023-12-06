@@ -8,7 +8,7 @@ import api from "@/api";
 import Loader from "../../components/Loader/Loader.tsx";
 
 const Dashboard: FC = () => {
-    const { data, isLoading } = useQuery({
+    const { data, isPending } = useQuery({
         queryKey: ["content"],
         queryFn: () => api.get("/content").then(({ data }) => data),
     });
@@ -18,7 +18,7 @@ const Dashboard: FC = () => {
             <Typography level="h1">Dashboard</Typography>
             <Typography level="h3">I'm happy, I use React query :)</Typography>
             <Box display="flex" justifyContent="center" alignItems="center" height="100%">
-                {isLoading ? <Loader /> : <Typography>{data.content}</Typography>}
+                {isPending ? <Loader /> : <Typography>{data.content}</Typography>}
             </Box>
         </>
     );

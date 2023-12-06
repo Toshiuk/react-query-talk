@@ -7,6 +7,13 @@ import delay from "../utils/delay.ts";
 const getItems = () => JSON.parse(sessionStorage.getItem("items") || "[]");
 
 export const handlers = [
+    http.get(`${MOCKED_BASE_URL}/status`, async ({ request }) => {
+        const url = new URL(request.url);
+        const returnError = url.searchParams.get("returnError") === "true";
+        await delay(4);
+        if (returnError) return new HttpResponse(null, { status: 500, statusText: "Internal Server Error" });
+        return HttpResponse.json({});
+    }),
     http.get(`${MOCKED_BASE_URL}/content`, async () => {
         await delay(2);
         return HttpResponse.json({ content: "Success! This text came from the backend!" });

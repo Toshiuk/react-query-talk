@@ -8,7 +8,7 @@ import RequestItemBase from "../RequestItemBase/RequestItemBase.tsx";
 
 const queryKey = ["requestError"];
 const RequestItemError: FC = () => {
-    const { data, isLoading } = useQuery({
+    const { data, isPending } = useQuery({
         queryKey,
         queryFn: () => api.get("/content/error").then(({ data }) => data),
     });
@@ -18,7 +18,7 @@ const RequestItemError: FC = () => {
             title="Error"
             tooltip="refetchOnWindowFocus is true by default, refetching if data is stale"
             content={data?.content}
-            isLoading={isLoading}
+            isLoading={isPending}
             queryKey={queryKey}
         />
     );

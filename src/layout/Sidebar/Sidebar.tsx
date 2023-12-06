@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
+import RuleIcon from "@mui/icons-material/Rule";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
@@ -52,6 +53,11 @@ const navItems: NavItem[] = [
         title: "Infinite Query",
         Icon: AllInclusiveIcon,
         path: "/infiniteQuery",
+    },
+    {
+        title: "Status",
+        Icon: RuleIcon,
+        path: "/status",
     },
 ];
 

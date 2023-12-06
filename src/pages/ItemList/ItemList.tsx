@@ -13,7 +13,7 @@ const ItemList: FC = () => {
 
     const {
         data: items,
-        isLoading: isLoadingItems,
+        isPending: isLoadingItems,
         isFetching: isFetchingItems,
     } = useQuery({
         queryKey: ["items"],

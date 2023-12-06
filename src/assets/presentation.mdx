@@ -95,6 +95,26 @@ import ReactQueryImg from "./images/react-query.png";
     ```
 
     ---
+    <QueryStatsIcon style={{ fontSize: 64 }} />
+
+    ```tsx showLineNumbers
+    const FetchPosts = () => {
+        const { data: posts, status } = useQuery({queryKey: ["posts"], queryFn: fetchPosts});
+        if(status === "pending"){  // or isPending
+            return <div>Loading...</div> // query has no data yet
+        }
+
+        if(status === "error"){  // or isError
+            return <div>Error</div> // query encountered an error
+        }
+
+        if(status === "success"){  // or isSuccess
+            return <div>Loading...</div> // query was successful and data is available
+        }
+    }
+    ```
+
+    ---
 
     <SyncIcon style={{ fontSize: 64 }} />
 
@@ -112,9 +132,9 @@ import ReactQueryImg from "./images/react-query.png";
 
     ```tsx showLineNumbers highlightLines="2"
     const FetchPost = ({id}) => {
-        const { data: {post}, isLoading } = useQuery({queryKey: ["posts", id], queryFn: () => fetchPost(id)});
+        const { data: {post}, isPending } = useQuery({queryKey: ["posts", id], queryFn: () => fetchPost(id)});
 
-        return <div>{isLoading ? "Loading..." : <DisplayPost post={post} />}</div>
+        return <div>{isPending ? "Loading..." : <DisplayPost post={post} />}</div>
     }
     ```
 
@@ -124,13 +144,13 @@ import ReactQueryImg from "./images/react-query.png";
 
     ```tsx showLineNumbers highlightLines="2-8"
     const FetchPosts = () => {
-        const { data: posts, isLoading, isError } = useQuery({queryKey: ["posts"], queryFn: fetchPosts})
+        const { data: posts, isPending, isError } = useQuery({queryKey: ["posts"], queryFn: fetchPosts})
 
         if(isError){
             return <div>Something went wrong!</div>
         }
 
-        return <div>{isLoading ? "Loading..." : <DisplayPosts posts={posts} />}</div>
+        return <div>{isPending ? "Loading..." : <DisplayPosts posts={posts} />}</div>
     }
     ```
 
@@ -156,7 +176,7 @@ import ReactQueryImg from "./images/react-query.png";
         error,
         isError,
         isFetching,
-        isLoading,
+        isPending,
         isStale,
         isSuccess,
         // ...
