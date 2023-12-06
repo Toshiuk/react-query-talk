@@ -22,7 +22,7 @@ const Providers: FC = () => {
             <QueryClientProvider client={queryClient}>
                 <CssBaseline />
                 <RouterProvider router={router} />
-                <ReactQueryDevtools buttonPosition="top-right" />
+                <ReactQueryDevtools buttonPosition="top-right" position="right" />
             </QueryClientProvider>
         </CssVarsProvider>
     );

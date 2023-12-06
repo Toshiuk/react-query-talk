@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 
-import { List, ListItem, ListItemDecorator, Switch, Tooltip, Typography } from "@mui/joy";
+import { Input, List, ListItem, ListItemDecorator, Switch, Tooltip, Typography } from "@mui/joy";
 import { useQuery } from "@tanstack/react-query";
 
 import api from "@/api";
@@ -14,11 +14,15 @@ type StatusItem = {
 const Status: FC = () => {
     const [returnError, setReturnError] = useState(false);
     const [enabled, setEnabled] = useState(true);
+    const [staleTime, setStaleTime] = useState(10);
+    const [gcTime, setGcTime] = useState(20);
 
-    const { status, fetchStatus, isLoading } = useQuery({
+    const { data, status, fetchStatus, isLoading, isStale } = useQuery({
         queryKey: ["status"],
         queryFn: () => api.get<string[]>("/status", { params: { returnError } }).then(({ data }) => data),
         enabled,
+        staleTime: 1000 * staleTime,
+        gcTime: 1000 * gcTime,
     });
 
     const statusItems: StatusItem[] = [
@@ -57,6 +61,11 @@ const Status: FC = () => {
             status: fetchStatus === "paused",
             tooltip: "fetchStatus === 'paused'",
         },
+        {
+            label: "Stale",
+            status: isStale,
+            tooltip: "isStale",
+        },
     ];
 
     return (
@@ -77,6 +86,24 @@ const Status: FC = () => {
             >
                 Enabled
             </Typography>
+            <Typography
+                component="label"
+                mt={1}
+                endDecorator={
+                    <Input value={staleTime} onChange={(e) => setStaleTime(+(e.target.value || 0))} type="number" />
+                }
+            >
+                Stale time (in seconds)
+            </Typography>
+            <Typography
+                component="label"
+                mt={1}
+                endDecorator={
+                    <Input value={gcTime} onChange={(e) => setGcTime(+(e.target.value || 0))} type="number" />
+                }
+            >
+                Garbage collector time (in seconds)
+            </Typography>
             <List sx={{ gap: 3, mt: 1 }}>
                 {statusItems.map(({ label, status, tooltip }) => (
                     <ListItem key={label}>
@@ -86,6 +113,9 @@ const Status: FC = () => {
                         </Tooltip>
                     </ListItem>
                 ))}
+                <ListItem>
+                    <Typography level="body-lg">Data: {JSON.stringify(data)}</Typography>
+                </ListItem>
             </List>
         </>
     );

@@ -12,7 +12,7 @@ export const handlers = [
         const returnError = url.searchParams.get("returnError") === "true";
         await delay(4);
         if (returnError) return new HttpResponse(null, { status: 500, statusText: "Internal Server Error" });
-        return HttpResponse.json({});
+        return HttpResponse.json({ content: "Success! This text came from the backend!" });
     }),
     http.get(`${MOCKED_BASE_URL}/content`, async () => {
         await delay(2);
