@@ -2,6 +2,7 @@ import React from "react";
 
 import ReactDOM from "react-dom/client";
 
+import { MOCKED_BASE_URL } from "@/api/constants.ts";
 import Providers from "@/Providers.tsx";
 
 async function enableMocking() {
@@ -12,7 +13,7 @@ async function enableMocking() {
             url: "./mockServiceWorker.js",
         },
         onUnhandledRequest(req, print) {
-            if (/\.(svg|js|png)/.test(req.url)) return;
+            if (!req.url.toString().startsWith(MOCKED_BASE_URL)) return;
 
             print.warning();
         },

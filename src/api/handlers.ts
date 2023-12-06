@@ -22,6 +22,18 @@ export const handlers = [
         if (random === 0) return HttpResponse.json({ content: "Success! This text came from the backend!" });
         return new HttpResponse(null, { status: 500, statusText: "Internal Server Error" });
     }),
+    http.get(`${MOCKED_BASE_URL}/items/infinite`, async ({ request }) => {
+        const pageSize = 10;
+        const url = new URL(request.url);
+        const pageNumber = Number(url.searchParams.get("pageNumber") || 0);
+        await delay(2);
+        const items = new Array(pageSize).fill(null).map((_, index) => `Item ${index + pageNumber * pageSize}`);
+        const data = {
+            items,
+            pageNumber,
+        };
+        return HttpResponse.json(data);
+    }),
     http.get(`${MOCKED_BASE_URL}/items`, async () => {
         await delay(2);
         const items = getItems();

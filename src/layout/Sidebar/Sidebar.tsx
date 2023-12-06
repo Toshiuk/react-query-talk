@@ -1,6 +1,7 @@
 import { FC, PropsWithChildren } from "react";
 
 import { Link, useLocation } from "react-router-dom";
+import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
@@ -33,6 +34,11 @@ const navItems: NavItem[] = [
         path: "/dashboard",
     },
     {
+        title: "Request examples",
+        Icon: SyncAltIcon,
+        path: "/requestExamples",
+    },
+    {
         title: "Item list",
         Icon: ListOutlinedIcon,
         path: "/list",
@@ -43,9 +49,9 @@ const navItems: NavItem[] = [
         path: "/listOptimistic",
     },
     {
-        title: "Request examples",
-        Icon: SyncAltIcon,
-        path: "/requestExamples",
+        title: "Infinite Query",
+        Icon: AllInclusiveIcon,
+        path: "/infiniteQuery",
     },
 ];
 
