@@ -27,8 +27,6 @@ fetching scenarios with React. The talk was created for internal purposes at my 
     - `useMutation`, implementing infinite scroll
 - [x] **Final Observations**
     - Persisting QueryClient state, comparison with other libraries
-- [ ] **Conclusion**
-    - Impact on development and user experience
 
 ## 🧑‍💻 Examples
 

@@ -29,7 +29,7 @@ const Status: FC = () => {
         {
             label: "Success",
             status: status === "success",
-            tooltip: "status === 'success' or isStatus",
+            tooltip: "status === 'success' or isSuccess",
         },
         {
             label: "Pending",
