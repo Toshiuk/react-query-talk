@@ -1,6 +1,5 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
-import SyncIcon from "@mui/icons-material/Sync";
 import { PresentifyProvider } from "presentify";
 import ReactQueryImg from "./images/react-query.png";
 
@@ -95,7 +94,136 @@ import ReactQueryImg from "./images/react-query.png";
     ```
 
     ---
-    <QueryStatsIcon style={{ fontSize: 64 }} />
+
+    ## useQuery - Options
+
+    ```tsx showLineNumbers
+    const {
+        data,
+        error,
+        isError,
+        isFetching,
+        isPending,
+        isStale,
+        isSuccess,
+        // ...
+        } = useQuery({
+            queryKey,
+            queryFn,
+            staleTime,
+            enabled,
+            initialData,
+            placeholderData,
+            // ...
+        })
+    ```
+
+    ---
+
+    ## Get started
+
+    ```tsx showLineNumbers
+    const queryClient = new QueryClient({
+    defaultOptions: {
+        mutations: {
+            retry: 2,
+        },
+        queries: {
+            retry: false,
+            staleTime: 5 * 60 * 1000, // 5 minutes
+            gcTime: 60 * 60 * 1000, // 10 hour
+            throwOnError: true,
+        },
+    },
+    })
+
+    ReactDOM.createRoot(rootElement).render(
+    <QueryClientProvider client={queryClient}>
+        // ...
+    </PersistQueryClientProvider>
+    );
+    ```
+
+    ---
+
+    ## Examples - Caching
+
+    ```tsx showLineNumbers highlightLines="2"
+    const FetchPost = ({id}) => {
+        const { data: post, isPending } = useQuery({queryKey: ["postsDetail", id], queryFn: () => fetchPost(id)});
+
+        return <div>{isPending ? "Loading..." : <DisplayPost post={post} />}</div>
+    }
+    ```
+
+    ---
+
+    ## Examples - Error
+
+    ```tsx showLineNumbers highlightLines="2-9"
+    const FetchPosts = () => {
+        const { data: posts,
+                isPending,
+                isError,
+                error } = useQuery({queryKey: ["posts"], queryFn: fetchPosts})
+
+        if(isError){
+            return <div>Something went wrong! {error.message}</div>
+        }
+
+        return <div>{isPending ? "Loading..." : <DisplayPosts posts={posts} />}</div>
+    }
+    ```
+
+    ---
+
+    ## Examples - refetchOnWindowFocus
+
+    ```tsx showLineNumbers
+    const SubscribePage = () => {
+        const {data: {subscribed} = {subscribed: false}} =
+                            useQuery({
+                                queryKey: ["subscribed"],
+                                queryFn: fetchSubscribed,
+                                refetchOnWindowFocus: "always"
+                            });
+
+        return <div>
+                    {subscribed ? "You are subscribed" : "You are not subscribed"}
+                    <a href="otherurl.com/subscribe" target="_blank">sign here</a>
+               </div>
+    }
+    ```
+
+    ---
+
+    ## Examples - Invalidate queries & Mutations
+
+    ```tsx showLineNumbers
+    import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+    const AddPost = () => {
+        const [postContent, setPostContent] = useState("");
+        const queryClient = useQueryClient();
+        const { addPost } = useMutation({
+            mutationFn: addPostApi,
+            onSuccess: () => {
+                queryClient.invalidateQueries({queryKey: ["posts"]});
+            }
+        });
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            addPost(postContent);
+        };
+
+        return <form onSubmit={handleSubmit}>
+                    // ... setPostContent somewhere here
+               </form>
+    }
+    ```
+
+    ---
+    ## React Query Lifecycle
 
     ```tsx showLineNumbers
     const FetchPosts = () => {
@@ -112,156 +240,6 @@ import ReactQueryImg from "./images/react-query.png";
             return <div>Loading...</div> // query was successful and data is available
         }
     }
-    ```
-
-    ---
-
-    <SyncIcon style={{ fontSize: 64 }} />
-
-    ## Key Features of React Query
-
-    React Query brings several key features to the table:
-
-    - **Automated Caching**: Reduces unnecessary network requests.
-    - **Background Data Syncing**: Keeps data fresh without manual refreshes.
-    - **Optimistic Updates**: Provides a seamless user experience.
-
-    ---
-
-    ## Examples - Caching
-
-    ```tsx showLineNumbers highlightLines="2"
-    const FetchPost = ({id}) => {
-        const { data: {post}, isPending } = useQuery({queryKey: ["posts", id], queryFn: () => fetchPost(id)});
-
-        return <div>{isPending ? "Loading..." : <DisplayPost post={post} />}</div>
-    }
-    ```
-
-    ---
-
-    ## Examples - Error
-
-    ```tsx showLineNumbers highlightLines="2-8"
-    const FetchPosts = () => {
-        const { data: posts, isPending, isError } = useQuery({queryKey: ["posts"], queryFn: fetchPosts})
-
-        if(isError){
-            return <div>Something went wrong!</div>
-        }
-
-        return <div>{isPending ? "Loading..." : <DisplayPosts posts={posts} />}</div>
-    }
-    ```
-
-    ---
-
-    ## Examples - Success
-
-    ```tsx showLineNumbers highlightLines="2-6"
-    const FetchPosts = () => {
-        const { data: posts, isSuccess } = useQuery({queryKey: ["posts"], queryFn: fetchPosts})
-
-        return <div>{isSuccess ? <DisplayPosts posts={posts} /> : "Maybe loading, maybe error..."  }</div>
-    }
-    ```
-
-    ---
-
-    ## useQuery - Options
-
-    ```tsx showLineNumbers
-    const {
-        data,
-        error,
-        isError,
-        isFetching,
-        isPending,
-        isStale,
-        isSuccess,
-        // ...
-    } = useQuery({
-        queryKey,
-        queryFn,
-        cacheTime,
-        enabled,
-        initialData,
-        placeholderData,
-        // ...
-    })
-    ```
-
-    ---
-
-    ## UX Examples - refetchOnWindowFocus
-
-    ```tsx showLineNumbers
-    const Documents = () => {
-        const { data: documents } = useQuery({
-                                queryKey: ["documents"]
-                                queryFn: fetchDocuments,
-                                refetchOnWindowFocus: "always",
-                                suspense: true});
-
-        return <ul>{documents.map(document =>
-                    <li key={document.name}>
-                        {document.name}
-                        <a href={`example.com/signdocument/${document.id}`} target="_blank">sign here</a>
-                    </li>
-           )}</ul>
-    }
-    ```
-
-    ---
-
-        ## UX Examples - Invalidate queries
-
-        ```tsx showLineNumbers
-        import { queryCache } from "@tanstack/react-query";
-
-        const AddPost = () => {
-            const [postContent, setPostContent] = useState("");
-            const { addPost } = useMutation({
-                mutationFn: addPostApi,
-                onSuccess: () => {
-                    queryCache.invalidateQueries({queryKey: ["posts"]});
-                }
-            });
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                addPost(postContent);
-            };
-
-            return <form onSubmit={handleSubmit}>
-                        // ... setPostContent somewhere here
-                   </form>
-        }
-        ```
-
-    ---
-
-    ## Get started
-
-    ```tsx showLineNumbers
-    const queryClient = new QueryClient({
-        defaultOptions: {
-            mutations: {
-                retry: 2,
-            },
-            queries: {
-                retry: false,
-                staleTime: 5 * 60 * 1000, // 5 minutes
-                gcTime: 60 * 60 * 1000, // 10 hour
-                throwOnError: true,
-            },
-        },
-    })
-
-    ReactDOM.createRoot(rootElement).render(
-        <QueryClientProvider client={queryClient}>
-            // ...
-        </PersistQueryClientProvider>
-    );
     ```
 
     ---

@@ -10,7 +10,8 @@ export const handlers = [
     http.get(`${MOCKED_BASE_URL}/status`, async ({ request }) => {
         const url = new URL(request.url);
         const returnError = url.searchParams.get("returnError") === "true";
-        await delay(4);
+        const secondsToReturn = Number(url.searchParams.get("secondsToReturn") || 5);
+        await delay(secondsToReturn);
         if (returnError) return new HttpResponse(null, { status: 500, statusText: "Internal Server Error" });
         return HttpResponse.json({ content: "Success! This text came from the backend!" });
     }),
