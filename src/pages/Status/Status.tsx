@@ -49,19 +49,24 @@ const Status: FC = () => {
             tooltip: "status === 'success' or isSuccess",
         },
         {
-            label: "Pending",
-            status: status === "pending",
-            tooltip: "status === 'pending' or isPending",
-        },
-        {
             label: "Error",
             status: status === "error",
             tooltip: "status === 'error' or isError",
         },
         {
+            label: "Pending",
+            status: status === "pending",
+            tooltip: "status === 'pending' or isPending",
+        },
+        {
             label: "Loading",
             status: isLoading,
             tooltip: "isLoading",
+        },
+        {
+            label: "Stale",
+            status: isStale,
+            tooltip: "isStale",
         },
         {
             label: "Fetching",
@@ -77,11 +82,6 @@ const Status: FC = () => {
             label: "Fetching is paused",
             status: fetchStatus === "paused",
             tooltip: "fetchStatus === 'paused'",
-        },
-        {
-            label: "Stale",
-            status: isStale,
-            tooltip: "isStale",
         },
     ];
 

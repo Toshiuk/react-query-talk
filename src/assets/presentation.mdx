@@ -140,7 +140,7 @@ import ReactQueryImg from "./images/react-query.png";
     ReactDOM.createRoot(rootElement).render(
     <QueryClientProvider client={queryClient}>
         // ...
-    </PersistQueryClientProvider>
+    </QueryClientProvider>
     );
     ```
 
@@ -237,7 +237,7 @@ import ReactQueryImg from "./images/react-query.png";
         }
 
         if(status === "success"){  // or isSuccess
-            return <div>Loading...</div> // query was successful and data is available
+            return <div>Success: {posts}</div> // query was successful and data is available
         }
     }
     ```

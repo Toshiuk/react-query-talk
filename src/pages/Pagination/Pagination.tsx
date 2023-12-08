@@ -43,7 +43,7 @@ const Pagination: FC = () => {
     return (
         <>
             <Typography level="h1">Pagination</Typography>
-            <Box display="flex" flexDirection="column" height="50vh">
+            <Box display="flex" flexDirection="column" height="50vh" width="fit-content">
                 {!isFetchingItems && !!items?.length && (
                     <List marker="disc">
                         {items.map((item) => (
@@ -52,7 +52,7 @@ const Pagination: FC = () => {
                     </List>
                 )}
                 {isFetchingItems && <Loader />}
-                <Box display="flex" justifyContent="space-between" mt={2}>
+                <Box display="flex" gap={4} mt={2}>
                     <Button
                         onClick={() => setPageNumber(pageNumber - 1)}
                         disabled={pageNumber === 0 || isFetchingItems}
